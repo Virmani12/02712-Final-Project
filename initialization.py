@@ -13,10 +13,9 @@ class Location:
         #setting up connections that skips over itself
         self.connections = {i: 0 for i in range(n_locations) if i != ind}
 
-
 class Grid:
 
-    def __init__(self, n_locations, N, a, b, mu):
+    def __init__(self, n_locations, N, a, b, mu, c):
 
         self.map = []
         self.n_locations = n_locations
@@ -24,7 +23,7 @@ class Grid:
         self.alpha = a
         self.beta = b
         self.mu = mu
-
+        self.c = c
 
         #Setting up initial population sizes per location, providing number of total locations, and index of each location
         n = self.n
@@ -44,9 +43,9 @@ class Grid:
                 self.map.append(Location(loc_size, self.n_locations, i))
                 pop_sum += loc_size
             
-        self.setup_connections()
+        self.setup_connections(self.c)
 
-    def setup_connections(self):
+    def setup_connections(self, connectivity):
 
         #For each location, get random split of connections to non-connections
         # For each list of connections, assign random "c" value for that connection between 0 and the population size of j
@@ -57,7 +56,13 @@ class Grid:
                     if other_loc.n > 0:
                         valid_locs.append(other_loc)
         
-            split = random.uniform(0,1)
+             #If we provide a connectivity of 0, we are running a basic model that randomly assigns a number of connections 
+            #based off of a split
+            #Otherwise, we use the provided connectivity
+            if connectivity == 0:
+                split = random.uniform(0,1)
+            else:
+                split = connectivity
 
             #print("split:",split)
             j_connections = random.sample(valid_locs, int(split*len(valid_locs)))
@@ -68,6 +73,8 @@ class Grid:
                     loc.connections[j.ind] = 1
                 else:
                     loc.connections[j.ind] = random.randint(1,self.map[j.ind].n)
+    
+
         
     #This function sets a random starting point for the pandemic by assigning its I value to 1 and decremening its S value
     #MAY NOT BE JUST INCREMENTING BY 1
