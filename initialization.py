@@ -27,6 +27,7 @@ class Grid:
 
         #Setting up initial population sizes per location, providing number of total locations, and index of each location
         n = self.n
+        """ 
         #Random distribution of fractions to determine location population sizes (to prevent skewness)
         rand_distr = np.random.dirichlet(np.ones(n_locations),size=1)
         pop_sum = 0
@@ -41,7 +42,11 @@ class Grid:
             else:
                 loc_size = int(rand_distr[0][i]*n)
                 self.map.append(Location(loc_size, self.n_locations, i))
-                pop_sum += loc_size
+                pop_sum += loc_size """
+        
+        for i in range(n_locations):
+            self.map.append(Location(N/n_locations, self.n_locations, i))
+            #print(N/n_locations, "test")
             
         self.setup_connections(self.c)
 
