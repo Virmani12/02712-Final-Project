@@ -15,7 +15,7 @@ class Location:
 
 class Grid:
 
-    def __init__(self, n_locations, N, a, b, mu, c):
+    def __init__(self, n_locations, N, a, b, mu):
 
         self.map = []
         self.n_locations = n_locations
@@ -23,11 +23,10 @@ class Grid:
         self.alpha = a
         self.beta = b
         self.mu = mu
-        self.c = c
 
         #Setting up initial population sizes per location, providing number of total locations, and index of each location
         n = self.n
-        """ 
+
         #Random distribution of fractions to determine location population sizes (to prevent skewness)
         rand_distr = np.random.dirichlet(np.ones(n_locations),size=1)
         pop_sum = 0
@@ -42,15 +41,15 @@ class Grid:
             else:
                 loc_size = int(rand_distr[0][i]*n)
                 self.map.append(Location(loc_size, self.n_locations, i))
-                pop_sum += loc_size """
+                pop_sum += loc_size
         
-        for i in range(n_locations):
-            self.map.append(Location(N/n_locations, self.n_locations, i))
+        #for i in range(n_locations):
+          #  self.map.append(Location(N/n_locations, self.n_locations, i))
             #print(N/n_locations, "test")
             
-        self.setup_connections(self.c)
+        self.setup_connections()
 
-    def setup_connections(self, connectivity):
+    def setup_connections(self):
 
         #For each location, get random split of connections to non-connections
         # For each list of connections, assign random "c" value for that connection between 0 and the population size of j
@@ -61,13 +60,8 @@ class Grid:
                     if other_loc.n > 0:
                         valid_locs.append(other_loc)
         
-             #If we provide a connectivity of 0, we are running a basic model that randomly assigns a number of connections 
-            #based off of a split
-            #Otherwise, we use the provided connectivity
-            if connectivity == 0:
-                split = random.uniform(0,1)
-            else:
-                split = connectivity
+
+            split = random.uniform(0,1)
 
             #print("split:",split)
             j_connections = random.sample(valid_locs, int(split*len(valid_locs)))
@@ -86,8 +80,9 @@ class Grid:
     def random_orgin(self):
 
         rand_start = random.randint(0,self.n_locations-1)
-        self.map[rand_start].i = 1
-        self.map[rand_start].s -= 1
+        rand_i = random.uniform(0,0.1)
+        self.map[rand_start].i = self.map[rand_start].n*rand_i
+        self.map[rand_start].s -= self.map[rand_start].n*rand_i
 
     def mobility_based_origin(self, threshold, highly):
         #This function takes the top X-percentile of highly or lowly connected regions (based on total number of outgoing connections) 
@@ -107,5 +102,22 @@ class Grid:
         for key in top_keys:
             self.map[key].i +=1
             self.map[key].s -=1
+    
+    def edit_connections(self,threshold):
+        connection_count = {}
+
+        for loc in self.map:
+            connection_count[loc.ind] = sum(loc.connections.values())
+
+        sorted_counts = sorted(connection_count.items(), key=lambda x: x[1], reverse=True)
+        threshold = int(len(sorted_counts)*threshold)
+        top_keys = [item[0] for item in sorted_counts[:threshold]]
+
+        for loc in self.map:
+            if loc.ind in top_keys:
+                loc.connections = {i: 0 for i in range(self.n_locations) if i != loc.ind}
+            else:
+                for key in top_keys:
+                    loc.connections[key] = 0
 
 
