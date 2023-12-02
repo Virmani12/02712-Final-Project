@@ -35,14 +35,17 @@ class Grid:
         #for each location, set its population size to be rand_fraction*N, 
         # where the last location is just the difference between n and the sum of the rest of the population sizes
         # this is done to prevent rounding errors from exceeding the total population size
-        for i in range(n_locations):
+        """ for i in range(n_locations):
             if i == n_locations-1:
                 loc_size = n - pop_sum
                 self.map.append(Location(loc_size, self.n_locations, i))
             else:
                 loc_size = int(rand_distr[0][i]*n)
                 self.map.append(Location(loc_size, self.n_locations, i))
-                pop_sum += loc_size
+                pop_sum += loc_size """
+        
+        for i in range(n_locations):
+            self.map.append(Location(N/n_locations, self.n_locations, i))
             
         self.setup_connections(self.c)
 
