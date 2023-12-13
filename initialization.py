@@ -42,10 +42,7 @@ class Grid:
                 loc_size = int(rand_distr[0][i]*n)
                 self.map.append(Location(loc_size, self.n_locations, i))
                 pop_sum += loc_size
-        
-        #for i in range(n_locations):
-          #  self.map.append(Location(N/n_locations, self.n_locations, i))
-            #print(N/n_locations, "test")
+    
             
         self.setup_connections()
 
@@ -76,7 +73,6 @@ class Grid:
 
         
     #This function sets a random starting point for the pandemic by assigning its I value to 1 and decremening its S value
-    #MAY NOT BE JUST INCREMENTING BY 1
     def random_orgin(self):
 
         rand_start = random.randint(0,self.n_locations-1)
