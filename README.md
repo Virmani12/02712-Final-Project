@@ -11,5 +11,4 @@
 
 <div align="center">
   <img![Final Project Poster](https://github.com/Virmani12/02712-Final-Project/assets/66140791/ebb02329-d23d-49e2-85c4-ef58ad930c49)>
-
 </div>
