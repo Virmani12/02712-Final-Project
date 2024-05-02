@@ -4,5 +4,6 @@
 - Initialization scripts contain the classes that are used to simulate our object-oriented implementation of the SIR and SIRD models.
 - Simulation scripts run varying combinations of parameters with correcsponding visualizations to understand the unique dynamics that dictate how SIR and SIRD models are impacted by social connectivity.
 
-
-- <img width="612" alt="Screenshot 2024-05-02 at 1 45 35 PM" src="https://github.com/Virmani12/02712-Final-Project/assets/66140791/8c022e9e-2764-4ea2-abb5-0c3541673abc">
+<div align="center">
+  <img width="612" alt="Screenshot 2024-05-02 at 1 45 35 PM" src="https://github.com/Virmani12/02712-Final-Project/assets/66140791/8c022e9e-2764-4ea2-abb5-0c3541673abc">
+</div>
