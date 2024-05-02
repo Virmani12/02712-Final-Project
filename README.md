@@ -7,3 +7,7 @@
 <div align="center">
   <img width="612" alt="Screenshot 2024-05-02 at 1 45 35 PM" src="https://github.com/Virmani12/02712-Final-Project/assets/66140791/8c022e9e-2764-4ea2-abb5-0c3541673abc">
 </div>
+
+<div align="center">
+<[Final Project Poster.pdf](https://github.com/Virmani12/02712-Final-Project/files/15192180/Final.Project.Poster.pdf)>
+</div>
