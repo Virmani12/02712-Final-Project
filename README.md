@@ -9,5 +9,5 @@
 </div>
 
 <div align="center">
-<[Final Project Poster.pdf](https://github.com/Virmani12/02712-Final-Project/files/15192180/Final.Project.Poster.pdf)>
+  <[Final Project Poster.pdf](https://github.com/Virmani12/02712-Final-Project/files/15192180/Final.Project.Poster.pdf)>
 </div>
