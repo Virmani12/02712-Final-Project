@@ -8,7 +8,4 @@
   <img width="612" alt="Screenshot 2024-05-02 at 1 45 35 PM" src="https://github.com/Virmani12/02712-Final-Project/assets/66140791/8c022e9e-2764-4ea2-abb5-0c3541673abc">
 </div>
 
-
-<div align="center">
-  <img![Final Project Poster](https://github.com/Virmani12/02712-Final-Project/assets/66140791/ebb02329-d23d-49e2-85c4-ef58ad930c49)>
-</div>
+![Final Project Poster](https://github.com/Virmani12/02712-Final-Project/assets/66140791/b566f776-ca6a-4c15-b9b1-20173cc80a95)
